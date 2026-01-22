@@ -3,21 +3,48 @@ import Card from "components/card";
 import { MdEdit, MdDelete, MdArrowBack, MdAdd } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
-const FinalHero = () => {
+const IndikatorManagement = () => {
   const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
 
+  // Data kriteria untuk dropdown
+  const [kriteriaList] = useState([
+    { id: 1, nama: "Kriteria Ekologi" },
+    { id: 2, nama: "Kriteria Sosial Ekonomi" },
+    { id: 3, nama: "Kriteria Kelembagaan" },
+    { id: 4, nama: "Kriteria Governance" },
+  ]);
+
   const [data, setData] = useState([
     {
       id: 1,
-      image: "/path/to/hero-final.jpg",
-      title: "Bersama Menjaga Lautan Indonesia",
-      subtitle: "Mari Berpartisipasi",
-      description: "Kontribusi Anda sangat berarti untuk kelestarian ekosistem laut",
-      buttonText: "Hubungi Kami",
-      buttonLink: "/contact",
+      kriteria_id: 1,
+      kriteria_nama: "Kriteria Ekologi",
+      nama: "Keanekaragaman Hayati",
+      created_at: "2024-01-15",
+    },
+    {
+      id: 2,
+      kriteria_id: 1,
+      kriteria_nama: "Kriteria Ekologi",
+      nama: "Kondisi Habitat",
+      created_at: "2024-01-15",
+    },
+    {
+      id: 3,
+      kriteria_id: 2,
+      kriteria_nama: "Kriteria Sosial Ekonomi",
+      nama: "Partisipasi Masyarakat",
+      created_at: "2024-01-15",
+    },
+    {
+      id: 4,
+      kriteria_id: 2,
+      kriteria_nama: "Kriteria Sosial Ekonomi",
+      nama: "Manfaat Ekonomi",
+      created_at: "2024-01-15",
     },
   ]);
 
@@ -32,13 +59,16 @@ const FinalHero = () => {
     setDeleteId(null);
   };
 
-  const filteredData = data.filter((item) =>
-    item.title.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredData = data.filter(
+    (item) =>
+      item.nama.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.kriteria_nama.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <div className="mt-5 animate-fade-in">
       <Card extra="p-5">
+        {/* Header */}
         <div className="mb-5">
           <button
             onClick={() => navigate(-1)}
@@ -49,50 +79,52 @@ const FinalHero = () => {
           </button>
           <div className="flex items-center justify-between">
             <h2 className="text-2xl font-bold text-navy-700 dark:text-white">
-              Manajemen Final Hero Section
+              Manajemen Indikator EVIKA
             </h2>
             <button
-              onClick={() => navigate("/admin/default/final-hero/create")}
+              onClick={() => navigate("/admin/evika/indikator/create")}
               className="flex items-center gap-2 bg-brand-500 text-white px-4 py-2 rounded-lg hover:bg-brand-600 transition-colors"
             >
               <MdAdd className="h-5 w-5" />
-              Tambah Final Hero
+              Tambah Indikator
             </button>
           </div>
         </div>
+
+        {/* Search Bar */}
         <div className="mb-4 flex justify-end">
           <input
             type="text"
-            placeholder="Cari hero..."
+            placeholder="Cari indikator..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="border border-gray-300 dark:border-navy-600 dark:bg-navy-700 dark:text-white rounded-lg px-4 py-2 w-64"
           />
         </div>
+
+        {/* Table */}
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
               <tr className="border-b border-gray-200 dark:border-navy-600">
-                <th className="text-left py-3 px-4 text-navy-700 dark:text-white">Image</th>
-                <th className="text-left py-3 px-4 text-navy-700 dark:text-white">Title</th>
-                <th className="text-left py-3 px-4 text-navy-700 dark:text-white">Subtitle</th>
-                <th className="text-left py-3 px-4 text-navy-700 dark:text-white">Button</th>
+                <th className="text-left py-3 px-4 text-navy-700 dark:text-white">No</th>
+                <th className="text-left py-3 px-4 text-navy-700 dark:text-white">Kriteria</th>
+                <th className="text-left py-3 px-4 text-navy-700 dark:text-white">Nama Indikator</th>
+                <th className="text-left py-3 px-4 text-navy-700 dark:text-white">Tanggal Dibuat</th>
                 <th className="text-center py-3 px-4 text-navy-700 dark:text-white">Aksi</th>
               </tr>
             </thead>
             <tbody>
-              {filteredData.map((item) => (
+              {filteredData.map((item, index) => (
                 <tr key={item.id} className="border-b border-gray-200 dark:border-navy-600">
-                  <td className="py-3 px-4">
-                    <img src={item.image} alt={item.title} className="h-16 w-24 object-cover rounded" onError={(e) => e.target.src = "https://via.placeholder.com/150"} />
-                  </td>
-                  <td className="py-3 px-4 text-navy-700 dark:text-white">{item.title}</td>
-                  <td className="py-3 px-4 text-navy-700 dark:text-white">{item.subtitle}</td>
-                  <td className="py-3 px-4 text-navy-700 dark:text-white">{item.buttonText}</td>
+                  <td className="py-3 px-4 text-navy-700 dark:text-white">{index + 1}</td>
+                  <td className="py-3 px-4 text-navy-700 dark:text-white">{item.kriteria_nama}</td>
+                  <td className="py-3 px-4 text-navy-700 dark:text-white">{item.nama}</td>
+                  <td className="py-3 px-4 text-navy-700 dark:text-white">{item.created_at}</td>
                   <td className="py-3 px-4">
                     <div className="flex justify-center gap-2">
                       <button
-                        onClick={() => navigate(`/admin/default/final-hero/edit/${item.id}`)}
+                        onClick={() => navigate(`/admin/evika/indikator/edit/${item.id}`)}
                         className="flex items-center justify-center bg-green-500 text-white p-2 rounded-lg hover:bg-green-600 transition-colors"
                       >
                         <MdEdit className="h-5 w-5" />
@@ -111,14 +143,16 @@ const FinalHero = () => {
           </table>
         </div>
       </Card>
+
+      {/* Delete Confirmation Modal */}
       {showDeleteModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white dark:bg-navy-700 rounded-lg p-6 w-full max-w-md animate-modal-fade-in">
             <h3 className="text-xl font-bold text-navy-700 dark:text-white mb-4">
               Konfirmasi Hapus
             </h3>
-            <p className="text-gray-600 dark:text-gray-400 mb-6">
-              Apakah Anda yakin ingin menghapus hero ini?
+            <p className="text-navy-700 dark:text-white mb-6">
+              Apakah Anda yakin ingin menghapus indikator ini?
             </p>
             <div className="flex gap-3">
               <button
@@ -141,4 +175,4 @@ const FinalHero = () => {
   );
 };
 
-export default FinalHero;
+export default IndikatorManagement;
