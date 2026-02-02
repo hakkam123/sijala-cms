@@ -18,6 +18,7 @@
 		opacity: 0;
 		transform: translateY(10px);
 	}
+
 	to {
 		opacity: 1;
 		transform: translateY(0);
@@ -29,6 +30,7 @@
 		opacity: 0;
 		transform: scale(0.95);
 	}
+
 	to {
 		opacity: 1;
 		transform: scale(1);
@@ -44,16 +46,108 @@
 }
 
 input.defaultCheckbox::before {
-	content: url(../src/assets/svg/checked.svg); 
+	content: url(../src/assets/svg/checked.svg);
 	color: white;
-	opacity: 0; 
-	height: 16px; 
+	opacity: 0;
+	height: 16px;
 	width: 16px;
-	position: absolute; 
+	position: absolute;
 	left: 50%;
 	transform: translate(-50%, 0px);
-} 
+}
 
-input:checked.defaultCheckbox::before { 
+input:checked.defaultCheckbox::before {
 	opacity: 1;
+}
+
+/* Sidebar Styles */
+@keyframes slideInLeft {
+	from {
+		opacity: 0;
+		transform: translateX(-8px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes pulseGlow {
+
+	0%,
+	100% {
+		box-shadow: 0 0 8px rgba(45, 212, 191, 0.3);
+	}
+
+	50% {
+		box-shadow: 0 0 16px rgba(45, 212, 191, 0.5);
+	}
+}
+
+.sidebar-link-enter {
+	animation: slideInLeft 0.2s ease-out;
+}
+
+.sidebar-active-glow {
+	animation: pulseGlow 2s ease-in-out infinite;
+}
+
+/* Custom scrollbar for sidebar */
+nav::-webkit-scrollbar {
+	width: 4px;
+}
+
+nav::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+nav::-webkit-scrollbar-thumb {
+	background: rgba(255, 255, 255, 0.1);
+	border-radius: 2px;
+}
+
+nav::-webkit-scrollbar-thumb:hover {
+	background: rgba(255, 255, 255, 0.2);
+}
+
+/* Tooltip styles for collapsed sidebar */
+.sidebar-tooltip {
+	position: relative;
+}
+
+.sidebar-tooltip::after {
+	content: attr(title);
+	position: absolute;
+	left: calc(100% + 12px);
+	top: 50%;
+	transform: translateY(-50%);
+	background: #1E3A5F;
+	color: white;
+	padding: 6px 12px;
+	border-radius: 6px;
+	font-size: 12px;
+	font-weight: 500;
+	white-space: nowrap;
+	opacity: 0;
+	visibility: hidden;
+	transition: all 0.2s ease;
+	z-index: 100;
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-tooltip:hover::after {
+	opacity: 1;
+	visibility: visible;
+}
+
+/* Login page input focus styles */
+.login-input:focus {
+	border-color: #374151;
+	box-shadow: 0 0 0 3px rgba(156, 163, 175, 0.2);
+}
+
+/* Card shadow for login */
+.login-card {
+	box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 }

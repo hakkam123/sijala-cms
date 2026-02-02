@@ -9,6 +9,7 @@ export default function Admin(props) {
   const { ...rest } = props;
   const location = useLocation();
   const [open, setOpen] = React.useState(true);
+  const [collapsed, setCollapsed] = React.useState(false);
   const [currentRoute, setCurrentRoute] = React.useState("Main Dashboard");
 
   React.useEffect(() => {
@@ -56,26 +57,41 @@ export default function Admin(props) {
     });
   };
 
+  // Updated sidebar width with proper margin values
+  const sidebarMargin = collapsed ? "xl:ml-[72px]" : "xl:ml-[260px]";
+
   document.documentElement.dir = "ltr";
   return (
     <div className="flex h-full w-full">
-      <Sidebar open={open} onClose={() => setOpen(false)} />
-      {/* Navbar & Main Content */}
-      <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900">
+      {/* Sidebar - Full height, fixed position, highest z-index */}
+      <Sidebar
+        open={open}
+        onClose={() => setOpen(false)}
+        collapsed={collapsed}
+        onToggleCollapse={() => setCollapsed(!collapsed)}
+      />
+
+      {/* Main Content Area */}
+      <div
+        className={`h-full w-full bg-lightPrimary dark:!bg-navy-900 transition-all duration-300 ${sidebarMargin}`}
+      >
         {/* Main Content */}
-        <main
-          className={`mx-[12px] h-full flex-none transition-all md:pr-2 xl:ml-[313px]`}
-        >
+        <main className="mx-0 h-full flex-none">
           {/* Routes */}
           <div className="h-full">
-            <Navbar
-              onOpenSidenav={() => setOpen(true)}
-              logoText={"Horizon UI Tailwind React"}
-              brandText={currentRoute}
-              secondary={getActiveNavbar(routes)}
-              {...rest}
-            />
-            <div className="pt-5s mx-auto mb-auto h-full min-h-[84vh] p-2 md:pr-2">
+            {/* Navbar - positioned below sidebar z-index */}
+            <div className="relative z-40">
+              <Navbar
+                onOpenSidenav={() => setOpen(true)}
+                logoText={"Horizon UI Tailwind React"}
+                brandText={currentRoute}
+                secondary={getActiveNavbar(routes)}
+                {...rest}
+              />
+            </div>
+
+            {/* Page Content */}
+            <div className="mx-auto mb-auto h-full min-h-[84vh] p-4">
               <Routes>
                 {getRoutes(routes)}
 
