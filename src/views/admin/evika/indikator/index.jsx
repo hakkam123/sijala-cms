@@ -9,13 +9,7 @@ const IndikatorManagement = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
 
-  // Data kriteria untuk dropdown
-  const [kriteriaList] = useState([
-    { id: 1, nama: "Kriteria Ekologi" },
-    { id: 2, nama: "Kriteria Sosial Ekonomi" },
-    { id: 3, nama: "Kriteria Kelembagaan" },
-    { id: 4, nama: "Kriteria Governance" },
-  ]);
+
 
   const [data, setData] = useState([
     {

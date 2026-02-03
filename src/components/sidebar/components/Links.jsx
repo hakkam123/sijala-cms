@@ -43,10 +43,10 @@ const badgeCounts = {
 // Section label component
 const SectionLabel = ({ label, collapsed }) => {
   if (collapsed) return null;
-  
+
   return (
     <div className="mb-2 mt-4 first:mt-0 px-3">
-      <span 
+      <span
         className="text-[10px] font-semibold uppercase tracking-wider text-white/40"
         style={{ letterSpacing: '0.1em' }}
       >
@@ -70,17 +70,17 @@ export function SidebarLinks(props) {
   const getIcon = (route) => {
     const iconSrc = iconMap[route.path] || iconMap[route.name];
     const isActive = activeRoute(route.path);
-    
+
     if (iconSrc) {
       return (
         <div className={`flex items-center justify-center transition-all duration-200 ${collapsed ? 'w-6 h-6' : 'w-5 h-5'}`}>
-          <img 
-            src={iconSrc} 
-            alt={route.name} 
+          <img
+            src={iconSrc}
+            alt={route.name}
             className="w-full h-full object-contain"
             style={{
-              filter: isActive 
-                ? "brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%)" 
+              filter: isActive
+                ? "brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(100%) contrast(100%)"
                 : "brightness(0) saturate(100%) invert(85%) sepia(5%) saturate(100%) hue-rotate(180deg) brightness(95%) contrast(90%)"
             }}
           />
@@ -101,14 +101,14 @@ export function SidebarLinks(props) {
 
   const createLinks = (routes) => {
     // Group routes by section
-    const menuUtama = routes.filter(r => 
-      !r.hidden && 
+    const menuUtama = routes.filter(r =>
+      !r.hidden &&
       (r.layout === "/admin" || r.layout === "/auth" || r.layout === "/rtl") &&
       !["Manajemen Pengguna", "Log Aktivitas"].includes(r.name)
     );
-    
-    const administrasi = routes.filter(r => 
-      !r.hidden && 
+
+    const administrasi = routes.filter(r =>
+      !r.hidden &&
       (r.layout === "/admin" || r.layout === "/auth" || r.layout === "/rtl") &&
       ["Manajemen Pengguna", "Log Aktivitas"].includes(r.name)
     );
@@ -119,44 +119,34 @@ export function SidebarLinks(props) {
 
       return (
         <Link key={index} to={route.layout + "/" + route.path}>
-          <div 
+          <div
             className={`
-              relative mb-1 flex cursor-pointer items-center rounded-xl 
+              relative mb-1 flex cursor-pointer items-center rounded-lg 
               transition-all duration-200 ease-out
               ${collapsed ? "justify-center px-2 py-3" : "px-3 py-2.5"}
-              ${isActive 
-                ? "bg-[#2DD4BF]/20 shadow-[inset_0_0_0_1px_rgba(45,212,191,0.3)]" 
+              ${isActive
+                ? "bg-[#0D2847]"
                 : "hover:bg-white/5"
               }
             `}
             title={collapsed ? route.name : ""}
           >
-            {/* Active indicator line */}
-            {isActive && (
-              <div 
-                className="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-5 bg-[#2DD4BF] rounded-r-full"
-                style={{
-                  boxShadow: '0 0 8px rgba(45, 212, 191, 0.5)'
-                }}
-              />
-            )}
-            
+
             <span className={`flex items-center justify-center flex-shrink-0 ${collapsed ? '' : 'ml-0.5'}`}>
               {getIcon(route)}
             </span>
-            
+
             {!collapsed && (
               <div className="flex items-center justify-between flex-1 ml-3 overflow-hidden">
                 <p
-                  className={`text-[13px] whitespace-nowrap transition-all duration-200 ${
-                    isActive
-                      ? "font-semibold text-white"
-                      : "font-medium text-white/70"
-                  }`}
+                  className={`text-[13px] whitespace-nowrap transition-all duration-200 ${isActive
+                    ? "font-semibold text-white"
+                    : "font-medium text-white/70"
+                    }`}
                 >
                   {route.name}
                 </p>
-                
+
                 {/* Badge for items with count */}
                 {badge && (
                   <span className="ml-2 flex h-5 min-w-[20px] items-center justify-center rounded-full bg-white/15 px-1.5 text-[10px] font-semibold text-white">
@@ -175,7 +165,7 @@ export function SidebarLinks(props) {
         {/* Menu Utama Section */}
         <SectionLabel label="Menu Utama" collapsed={collapsed} />
         {menuUtama.map((route, index) => renderLink(route, `main-${index}`))}
-        
+
         {/* Administrasi Section */}
         {administrasi.length > 0 && (
           <>

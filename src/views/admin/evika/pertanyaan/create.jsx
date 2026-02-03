@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Card from "components/card";
 import { MdArrowBack } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +7,7 @@ import TextField from "components/fields/TextField";
 
 const PertanyaanCreate = () => {
   const navigate = useNavigate();
-  
+
   const [formData, setFormData] = useState({
     kriteria_id: "",
     indikator_id: "",

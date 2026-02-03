@@ -10,7 +10,7 @@ const ArtikelManagement = () => {
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
   // Sample data matching the reference image style
-  const [data, setData] = useState([
+  const [data] = useState([
     {
       id: 1,
       judul: "Raih Prestasi Gemilang BLUD UPTD KKP...",

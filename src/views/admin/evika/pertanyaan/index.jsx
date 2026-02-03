@@ -9,23 +9,9 @@ const PertanyaanManagement = () => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [deleteId, setDeleteId] = useState(null);
 
-  // Data kriteria untuk display purposes
-  const [kriteriaList] = useState([
-    { id: 1, nama: "Kriteria Ekologi" },
-    { id: 2, nama: "Kriteria Sosial Ekonomi" },
-    { id: 3, nama: "Kriteria Kelembagaan" },
-    { id: 4, nama: "Kriteria Governance" },
-  ]);
 
-  // Data indikator untuk dropdown (filter berdasarkan kriteria)
-  const [indikatorList] = useState([
-    { id: 1, kriteria_id: 1, nama: "Keanekaragaman Hayati" },
-    { id: 2, kriteria_id: 1, nama: "Kondisi Habitat" },
-    { id: 3, kriteria_id: 2, nama: "Partisipasi Masyarakat" },
-    { id: 4, kriteria_id: 2, nama: "Manfaat Ekonomi" },
-    { id: 5, kriteria_id: 3, nama: "Struktur Organisasi" },
-    { id: 6, kriteria_id: 4, nama: "Transparansi" },
-  ]);
+
+
 
   const [data, setData] = useState([
     {

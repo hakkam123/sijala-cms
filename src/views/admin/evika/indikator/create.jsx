@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Card from "components/card";
 import { MdArrowBack } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +6,7 @@ import InputField from "components/fields/InputField";
 
 const IndikatorCreate = () => {
   const navigate = useNavigate();
-  
+
   const [formData, setFormData] = useState({
     kriteria_id: "",
     nama: "",

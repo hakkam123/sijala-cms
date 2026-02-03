@@ -46,12 +46,12 @@ export default function SignIn() {
           <span className="text-sm text-gray-600">
             Need to recover your account?{" "}
           </span>
-          <a
-            href="#"
+          <button
+            type="button"
             className="text-sm font-medium text-blue-600 transition-colors hover:text-blue-700 hover:underline"
           >
             Click Here
-          </a>
+          </button>
         </div>
 
         {/* Security Badge */}
