@@ -44,7 +44,7 @@ const Sidebar = ({ open, onClose, collapsed, onToggleCollapse }) => {
           backgroundRepeat: "no-repeat",
           backgroundPosition: "bottom left",
           backgroundSize: "auto 50%",
-          opacity: 0.08,
+          opacity: 0.5
         }}
       />
 
@@ -100,7 +100,7 @@ const Sidebar = ({ open, onClose, collapsed, onToggleCollapse }) => {
           {!collapsed && (
             <div className="flex flex-col overflow-hidden">
               <span className="text-[15px] font-bold text-white leading-tight">KKP Raja Ampat</span>
-              <span className="text-[11px] font-medium text-white/50">Marine Park Fee</span>
+              <span className="text-[11px] font-medium text-white/50">Content Management System</span>
             </div>
           )}
         </div>
