@@ -1,12 +1,12 @@
 import React from "react";
 import Card from "components/card";
 import { MdArrowBack, MdCheckCircle } from "react-icons/md";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PieChart from "components/charts/PieChart";
 
 const PenilaianDetail = () => {
   const navigate = useNavigate();
-  // const { id } = useParams(); // Will be used when fetching data from API
+
 
   // Data penilaian (dalam real app, fetch berdasarkan id)
   const penilaian = {
