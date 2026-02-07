@@ -30,7 +30,7 @@ const Sidebar = ({ open, onClose, collapsed, onToggleCollapse }) => {
       className={`sm:none duration-300 linear fixed !z-50 flex h-screen flex-col transition-all ease-out md:!z-50 lg:!z-50 xl:!z-50 ${sidebarWidth} ${open ? "translate-x-0" : "-translate-x-full"
         }`}
       style={{
-        background: "linear-gradient(180deg, #0A1628 0%, #0C2438 50%, #0A1628 100%)",
+        background: "linear-gradient(180deg, #122A46 0%, #0F2337 40%, #0B1C2E 70%, #081422 100%)",
         top: 0,
         left: 0,
         height: "100vh",
@@ -43,8 +43,8 @@ const Sidebar = ({ open, onClose, collapsed, onToggleCollapse }) => {
           backgroundImage: `url(${motifSidebar})`,
           backgroundRepeat: "no-repeat",
           backgroundPosition: "bottom left",
-          backgroundSize: "auto 50%",
-          opacity: 0.5
+          backgroundSize: "auto 60%",
+          opacity: 0.7
         }}
       />
 
