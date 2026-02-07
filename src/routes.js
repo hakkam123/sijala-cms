@@ -82,6 +82,7 @@ const routes = [
     path: "evika",
     icon: <MdAssessment className="h-6 w-6" />,
     component: <EvikaMain />,
+    hidden: true,
   },
   {
     name: "Berita",
@@ -90,11 +91,13 @@ const routes = [
     icon: <MdArticle className="h-6 w-6" />,
     component: <ArtikelManagement />,
   },
-  { name: "RAMS",
+  {
+    name: "RAMS",
     layout: "/admin",
     path: "rams",
     icon: <MdAnchor className="h-6 w-6" />,
     component: <RamsMain />,
+    hidden: true,
   },
   {
     name: "Tentang Kami",
@@ -103,6 +106,7 @@ const routes = [
     icon: <MdInfo className="h-6 w-6" />,
     component: <NFTMarketplace />,
     secondary: true,
+    hidden: true,
   },
   {
     name: "Kawasan Konservasi",
@@ -110,6 +114,7 @@ const routes = [
     icon: <MdMap className="h-6 w-6" />,
     path: "data-tables",
     component: <DataTables />,
+    hidden: true,
   },
   {
     name: "Layanan Kami",
@@ -117,6 +122,7 @@ const routes = [
     path: "profile",
     icon: <MdMiscellaneousServices className="h-6 w-6" />,
     component: <Profile />,
+    hidden: true,
   },
   {
     name: "Sign In",
@@ -254,7 +260,7 @@ const routes = [
     component: <TemuanEdit />,
     hidden: true,
   },
-  { 
+  {
     name: "Edit Artikel",
     layout: "/admin",
     path: "artikel/edit/:id",
@@ -346,7 +352,7 @@ const routes = [
     component: <ImpactBannerEdit />,
     hidden: true,
   },
-  { 
+  {
     name: "Peta Kawasan",
     layout: "/admin",
     path: "default/peta-kawasan",
